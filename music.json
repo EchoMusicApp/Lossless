@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "Something Different",
+      "artist": "The Chainsmokers",
+      "url": "https://lossless.echomusic.fun/Music/a12ko-the_chainsmokers_-_something_different.flac"
+    },
+    {
       "song": "High",
       "artist": "The Chainsmokers",
       "url": "https://lossless.echomusic.fun/Music/a12ko-the_chainsmokers_-_high.flac"
