@@ -1,8 +1,11 @@
 {
   "items": [
+        {
+      "song": "Muzhumathi",
+      "artist": "A.R. Rahman, Srinivas, Na. Muthukumar",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-Muzhumathi.flac"
+    },
     {
-<<<<<<< HEAD
-=======
       "song": "An Unhealthy Obsession",
       "artist": "The Blake Robinson Synthetic Orchestra",
       "url": "https://lossless.echomusic.fun/Music/furious1x-47_-_an_unhealthy_obsession_-_the_blake_robinson_synthetic_orchestra.flac"
@@ -153,7 +156,6 @@
       "url": "https://lossless.echomusic.fun/Music/ramanasivasubarajan-st-_nee_illai_enral.flac"
     },
     {
->>>>>>> a0c8ad8f3419d51f8bd7c0106ceccce04d25bbf3
       "song": "Thaarame Thaarame",
       "artist": "Ghibran, Sir Sriram",
       "url": "https://lossless.echomusic.fun/Music/rupeshrn-Thaarame_Thaarame.flac"
