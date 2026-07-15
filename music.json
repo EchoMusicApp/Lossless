@@ -1,5 +1,10 @@
 {
   "items": [
+   {
+      "song": "Kaattumalli",
+      "artist": "llaiyaraaja & Ananya Bhat",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-Kaattumalli.flac"
+    },
     {
       "song": "Airbag",
       "artist": "Radiohead",
@@ -11,7 +16,7 @@
       "url": "https://lossless.echomusic.fun/Music/rupeshrn-Thenkizhakku_(From_Vaazhai).flac"
     },
     {
-      "song": "Vari Vari (Unna Kadhaliche)",
+      "song": "Vari Vari (Unna Kaadhaliche)",
       "artist": "Dhee",
       "url": "https://lossless.echomusic.fun/Music/rupeshrn-Vari_Vari_(Unna_Kaadhaliche).flac"
     },
