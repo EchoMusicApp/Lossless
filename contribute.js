@@ -669,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!container.contains(e.target)) {
                 resultsContainer.style.display = 'none';
                 if (searchWrapper.style.display !== 'none' && !searchInput.value.trim()) {
-                    searchWrapper.style.display = 'none';
+                    collapseSearch();
                 }
             }
         };
