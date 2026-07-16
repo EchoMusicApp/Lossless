@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "Sweden",
+      "artist": "C418",
+      "url": "https://lossless.echomusic.fun/Music/mystery-goo-c418_-_sweden.flac"
+    },
+    {
       "song": "Moog City",
       "artist": "C418",
       "url": "https://lossless.echomusic.fun/Music/mystery-goo-c418_-_moog_city.flac"
