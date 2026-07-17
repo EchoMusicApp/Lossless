@@ -54,6 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const prLinkContainer   = document.getElementById('pr-link-container');
     const prLink            = document.getElementById('pr-link');
     const statusActionBtn   = document.getElementById('status-action-btn');
+    const statusCancelBtn   = document.getElementById('status-cancel-btn');
+    const statusFileProgress = document.getElementById('status-file-progress');
+
+    // Progress from the most recent failed submission attempt, kept so "Retry Upload" can
+    // resume (skip already-uploaded files, reuse the same fork/branch) instead of starting
+    // the whole fork+upload+PR flow over from file 1.
+    let lastAttempt = null;
 
     const hashParams   = new URLSearchParams(window.location.hash.substring(1));
     const tokenFromHash = hashParams.get('access_token');
@@ -142,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function resetUploadForm() {
 
+        lastAttempt = null;
         activeSearchUnwirers.forEach(unwire => unwire());
         activeSearchUnwirers = [];
 
@@ -727,30 +735,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submitBtn.addEventListener('click', async () => {
         if (submitBtn.disabled) return;
+        lastAttempt = null; // fresh submit from the form, not a retry
+        await runSubmission();
+    });
 
-        const destDir = "Music";
+    async function runSubmission(resume = null) {
+        const destDir = resume ? resume.destDir : "Music";
 
         showLoadingView();
 
         try {
-            if (trackSourceMode === 'upload') {
-                await submitWithNewUpload(selectedFiles, destDir);
+            if ((resume ? resume.mode : trackSourceMode) === 'upload') {
+                await submitWithNewUpload(resume ? resume.fileEntries : selectedFiles, destDir, resume);
             } else {
-                const entries = getSongEntries();
+                const entries = resume ? resume.fileEntries : getSongEntries();
                 for (const entry of entries) {
                     if (/[<>]/g.test(entry.song) || /[<>]/g.test(entry.artist)) {
                         throw new Error('HTML tags are not allowed in song or artist fields.');
                     }
                 }
-                await submitWithExistingTrack(entries, destDir);
+                await submitWithExistingTrack(entries, destDir, resume);
             }
         } catch (error) {
             console.error('Submission error:', error);
             showErrorState(error.message || 'An unknown network error occurred during submission.');
         }
-    });
+    }
 
-    async function submitWithNewUpload(fileEntries, destDir) {
+    async function submitWithNewUpload(fileEntries, destDir, resume) {
         const targetNames = fileEntries.map(f => f.file.name.toLowerCase().replace(/[^a-z0-9._-]/g, '_'));
         const dupeName = targetNames.find((name, idx) => targetNames.indexOf(name) !== idx);
         if (dupeName) {
@@ -759,56 +771,143 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const primaryEntry = fileEntries[0];
         const branchSlug   = primaryEntry.file.name.toLowerCase().replace(/[^a-z0-9._-]/g, '_').split('.')[0];
-        const branchName   = fileEntries.length === 1
+        const branchName   = resume ? resume.branchName : (fileEntries.length === 1
             ? `lossless-${gitHubUsername.toLowerCase()}-${branchSlug}`
-            : `lossless-${gitHubUsername.toLowerCase()}-batch-${Date.now()}`;
+            : `lossless-${gitHubUsername.toLowerCase()}-batch-${Date.now()}`);
 
-        const forkOwner = await forkAndSync(branchName, primaryEntry.song);
+        // Retry: fork+branch already exist from the earlier attempt, don't redo it.
+        const forkOwner = resume ? resume.forkOwner : await forkAndSync(branchName, primaryEntry.song);
 
-        const uploadedEntries = [];
+        const uploadedEntries = resume ? resume.uploadedEntries : [];
+        const attempt = { mode: 'upload', destDir, fileEntries, branchName, forkOwner, uploadedEntries };
+        lastAttempt = attempt;
+
+        fileEntries.forEach(f => { if (!f.status) f.status = f.uploaded ? 'done' : 'pending'; });
+        renderFileProgress(fileEntries);
+
+        // Contents-API PUT per file (git/blobs was tried instead — creates one shared commit,
+        // but its REST payload cap is well under the 100MB the docs claim; ~40MB FLACs get
+        // rejected outright with a 422 "input was too large to process"). Contents PUT handles
+        // that size fine; the tradeoff is GitHub's secondary (abuse-detection) rate limit, which
+        // several large PUTs back-to-back can trip as a 403. Mitigated with a delay between
+        // files and a real backoff-and-retry (not just a delay) specifically on 403s.
         let fileNum = 1;
         for (const fileEntry of fileEntries) {
+            fileNum = fileEntries.indexOf(fileEntry) + 1;
+            if (fileEntry.uploaded || fileEntry.skipped) continue; // already resolved in a prior attempt
+
             const sanitizedOriginalName = fileEntry.file.name.toLowerCase().replace(/[^a-z0-9._-]/g, '_');
             const newFilename = `${gitHubUsername.toLowerCase()}-${sanitizedOriginalName}`;
             const targetPath  = `Music/${newFilename}`;
             const trackUrl    = `https://lossless.echomusic.fun/${targetPath}`;
 
+            fileEntry.status = 'uploading';
+            renderFileProgress(fileEntries);
             updateLoadingMessage('Uploading Tracks', `Uploading ${fileNum}/${fileEntries.length}: ${newFilename}…`);
             const base64Audio = await readFileAsBase64(fileEntry.file);
 
-            const uploadRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/${targetPath}`, {
-                method: 'PUT',
-                headers: buildHeaders(),
-                body: JSON.stringify({
-                    message: `feat: upload lossless track for ${fileEntry.song}`,
-                    content: base64Audio,
-                    branch: branchName
-                })
-            });
-            if (!uploadRes.ok) throw new Error(`Failed to upload ${newFilename} to your fork.`);
+            let uploadRes;
+            const maxRateLimitRetries = 3;
+            for (let attemptNum = 0; ; attemptNum++) {
+                uploadRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/${targetPath}`, {
+                    method: 'PUT',
+                    headers: buildHeaders(),
+                    body: JSON.stringify({
+                        message: `feat: upload lossless track for ${fileEntry.song}`,
+                        content: base64Audio,
+                        branch: branchName
+                    })
+                });
+                // Retry on 403 (secondary rate limit) and 5xx (transient GitHub-side gateway
+                // errors, e.g. "Server Error") — both are worth backing off and retrying;
+                // 422/other 4xx are permanent for this request and shouldn't be retried.
+                const retryable = uploadRes.status === 403 || uploadRes.status >= 500;
+                if (uploadRes.ok || !retryable || attemptNum >= maxRateLimitRetries) break;
 
+                const waitSec = 20 * (attemptNum + 1);
+                updateLoadingMessage('Uploading Tracks', `GitHub returned ${uploadRes.status}, waiting ${waitSec}s before retrying ${newFilename}… (attempt ${attemptNum + 2}/${maxRateLimitRetries + 1})`);
+                await sleep(waitSec * 1000);
+            }
+            if (!uploadRes.ok) {
+                let detail = '';
+                try { detail = (await uploadRes.json()).message || ''; } catch {}
+
+                if (uploadRes.status === 422) {
+                    // File too large for the Contents API — this is a hard, permanent limit
+                    // (GitHub itself says "push via local clone instead"), not something a retry
+                    // fixes. Skip it and keep going with the rest of the batch.
+                    fileEntry.status = 'skipped';
+                    fileEntry.skipped = true;
+                    fileEntry.skipReason = detail || 'File is too large to be processed.';
+                    renderFileProgress(fileEntries);
+                    continue;
+                }
+
+                fileEntry.status = 'failed';
+                renderFileProgress(fileEntries);
+                attempt.failedFile = newFilename;
+                attempt.failedFileNum = fileNum;
+                throw new Error(`Failed to upload file ${fileNum}/${fileEntries.length} ("${newFilename}") to your fork — server responded ${uploadRes.status}.${detail ? ' ' + detail : ''}`);
+            }
+
+            fileEntry.uploaded = true;
+            fileEntry.status = 'done';
+            renderFileProgress(fileEntries);
             uploadedEntries.push({ song: fileEntry.song, artist: fileEntry.artist, url: trackUrl });
             fileEntry.aliases.forEach(alias => {
                 uploadedEntries.push({ song: alias.song, artist: alias.artist, url: trackUrl });
             });
-            fileNum++;
+
+            if (fileNum < fileEntries.length) await sleep(3000);
         }
 
+        const skippedFiles = fileEntries.filter(f => f.skipped);
+        if (uploadedEntries.length === 0) {
+            throw new Error('Every file in this batch was too large for browser upload — nothing left to submit. Use the CLI workflow instead.');
+        }
         await updateTrackJson(forkOwner, branchName, uploadedEntries);
         const prUrl = await openPullRequest(forkOwner, branchName, uploadedEntries, destDir);
-        showSuccessState(prUrl);
+        lastAttempt = null; // success, nothing left to resume
+        showSuccessState(prUrl, skippedFiles);
     }
 
-    async function submitWithExistingTrack(entries, destDir) {
+    function renderFileProgress(fileEntries) {
+        // Plain CSS/text markers instead of Font Awesome glyphs: FA icons render through a
+        // ::before pseudo-element with their own font metrics, which inline styles on the <i>
+        // itself don't fully control — they end up visibly off-center next to normal text.
+        // A div/text-based dot, ring, and character glyph share the same box model as the
+        // label text beside them, so they align to it exactly.
+        const icons = {
+            pending:   '<span style="width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--text-dim); display: block;"></span>',
+            uploading: '<span style="width: 0.7rem; height: 0.7rem; border-radius: 50%; border: 2px solid #d1d5db; border-top-color: var(--accent-primary, #6366f1); display: block; animation: spin 0.8s linear infinite;"></span>',
+            done:      '<span style="color: var(--accent-secondary, #16a34a); font-size: 0.85rem; font-weight: 700;">&#10003;</span>',
+            failed:    '<span style="color: #dc2626; font-size: 0.85rem; font-weight: 700;">&#10005;</span>',
+            skipped:   '<span style="color: #d97706; font-size: 0.85rem; font-weight: 700;">&#33;</span>'
+        };
+        const labels = { pending: 'Waiting', uploading: 'Uploading…', done: 'Uploaded', failed: 'Failed', skipped: 'Too large — skipped' };
+
+        statusFileProgress.innerHTML = fileEntries.map((f, idx) => `
+            <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.9rem; ${idx > 0 ? 'border-top: 1px solid var(--border-color, #e5e7eb);' : ''}" ${f.skipReason ? `title="${escapeHtml(f.skipReason)}"` : ''}>
+                <span style="width: 1rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">${icons[f.status] || icons.pending}</span>
+                <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem;">${escapeHtml(f.file.name)}</span>
+                <span style="font-size: 0.78rem; color: ${f.status === 'skipped' ? '#d97706' : 'var(--text-dim)'}; flex-shrink: 0;">${labels[f.status] || labels.pending}</span>
+            </div>
+        `).join('');
+        statusFileProgress.style.display = 'block';
+    }
+
+    async function submitWithExistingTrack(entries, destDir, resume) {
         const primaryEntry = entries[0];
         const slug        = primaryEntry.song.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 30);
-        const branchName  = `lossless-${gitHubUsername.toLowerCase()}-${slug}-link`;
+        const branchName  = resume ? resume.branchName : `lossless-${gitHubUsername.toLowerCase()}-${slug}-link`;
 
-        const forkOwner = await forkAndSync(branchName, primaryEntry.song);
+        const forkOwner = resume ? resume.forkOwner : await forkAndSync(branchName, primaryEntry.song);
+        lastAttempt = { mode: 'link', destDir, fileEntries: entries, branchName, forkOwner };
 
         const newEntries = entries.map(e => ({ song: e.song, artist: e.artist, url: selectedExistingUrl }));
         await updateTrackJson(forkOwner, branchName, newEntries);
         const prUrl = await openPullRequest(forkOwner, branchName, newEntries, destDir);
+        lastAttempt = null;
         showSuccessState(prUrl);
     }
 
@@ -933,8 +1032,13 @@ document.addEventListener('DOMContentLoaded', () => {
         statusErrorIcon.style.display   = 'none';
         prLinkContainer.style.display   = 'none';
         statusActionBtn.style.display   = 'none';
+        statusCancelBtn.style.display   = 'none';
         statusTitle.textContent   = title;
         statusMessage.textContent = message;
+        if (!lastAttempt) {
+            statusFileProgress.style.display = 'none';
+            statusFileProgress.innerHTML = '';
+        }
     }
 
     function showLoadingView() {
@@ -946,15 +1050,19 @@ document.addEventListener('DOMContentLoaded', () => {
         statusMessage.textContent = message;
     }
 
-    function showSuccessState(prUrl) {
+    function showSuccessState(prUrl, skippedFiles) {
         statusLoader.style.display      = 'none';
         statusSuccessIcon.style.display = 'block';
         statusTitle.textContent = 'Submission Sent!';
         statusMessage.innerHTML = 'Thank you for your lossless track submission! We have automatically created a Pull Request.<br><br>The continuous integration validation checks will run. Once they pass, a maintainer will review and manually merge your contribution into the live repository.';
+        if (skippedFiles && skippedFiles.length > 0) {
+            statusMessage.innerHTML += `<br><br><span style="color: #d97706;">Skipped ${skippedFiles.length} file(s) too large for browser upload — upload these separately via the CLI workflow: ${skippedFiles.map(f => escapeHtml(f.file.name)).join(', ')}</span>`;
+        }
         prLink.href = prUrl;
         prLinkContainer.style.display = 'block';
         statusActionBtn.textContent = 'Submit Another';
         statusActionBtn.style.display = 'inline-flex';
+        statusCancelBtn.style.display = 'none';
         statusActionBtn.onclick = () => {
             resetUploadForm();
             statusSection.style.display = 'none';
@@ -967,12 +1075,30 @@ document.addEventListener('DOMContentLoaded', () => {
         statusErrorIcon.style.display = 'block';
         statusTitle.textContent = 'Submission Failed';
         statusMessage.textContent = errorMsg;
-        statusActionBtn.textContent = 'Modify & Retry';
-        statusActionBtn.style.display = 'inline-flex';
-        statusActionBtn.onclick = () => {
-            statusSection.style.display = 'none';
-            formSection.style.display   = 'block';
-        };
+
+        if (lastAttempt) {
+            if (lastAttempt.mode === 'upload') {
+                renderFileProgress(lastAttempt.fileEntries); // keep the per-file list visible under the error
+            }
+            statusActionBtn.textContent = 'Retry Upload';
+            statusActionBtn.style.display = 'inline-flex';
+            statusActionBtn.onclick = () => runSubmission(lastAttempt);
+
+            statusCancelBtn.style.display = 'inline-flex';
+            statusCancelBtn.onclick = () => {
+                lastAttempt = null;
+                statusSection.style.display = 'none';
+                formSection.style.display   = 'block';
+            };
+        } else {
+            statusActionBtn.textContent = 'Modify & Retry';
+            statusActionBtn.style.display = 'inline-flex';
+            statusCancelBtn.style.display = 'none';
+            statusActionBtn.onclick = () => {
+                statusSection.style.display = 'none';
+                formSection.style.display   = 'block';
+            };
+        }
     }
 
     function buildHeaders() {

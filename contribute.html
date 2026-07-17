@@ -122,8 +122,10 @@
             </div>
             
             <h3 id="status-title">Uploading Track...</h3>
-            <p id="status-message" style="color: var(--text-dim); margin-bottom: 2rem; line-height: 1.7;">Please hold tight while we configure your fork and create the pull request.</p>
-            
+            <p id="status-message" style="color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.7;">Please hold tight while we configure your fork and create the pull request.</p>
+
+            <div id="status-file-progress" style="display: none; text-align: left; margin-bottom: 2rem; border: 1px solid var(--border-color, #e5e7eb); border-radius: 8px; overflow: hidden;"></div>
+
             <div id="pr-link-container" style="display: none; margin-bottom: 2rem;">
                 <a id="pr-link" href="#" target="_blank" class="btn btn-primary btn-github-pr" style="width: 100%; justify-content: center;">
                     <i class="fab fa-github"></i> View Pull Request on GitHub
@@ -132,6 +134,9 @@
 
             <button id="status-action-btn" class="btn btn-primary" style="display: none; width: 100%; justify-content: center;">
                 Go Back
+            </button>
+            <button id="status-cancel-btn" class="btn btn-text-only" style="display: none; width: 100%; justify-content: center; margin-top: 0.75rem;">
+                Start Over Instead
             </button>
         </section>
     </main>
