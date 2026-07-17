@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "Lucky",
+      "artist": "AURORA",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-04_lucky.flac"
+    },
+    {
       "song": "Mini World",
       "artist": "Indila",
       "url": "https://lossless.echomusic.fun/Music/shivanium-git-indila_-_mini_world.flac"
