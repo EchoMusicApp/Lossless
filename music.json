@@ -2,6 +2,45 @@
   "items": [
     {
 
+      "song": "00:00 (Zero O’Clock)",
+      "artist": "BTS",
+      "url": "https://lossless.echomusic.fun/Music/black-kouki-13._00_00__zero_o_clock_.flac"
+    },
+    {
+      "song": "ON",
+      "artist": "BTS",
+      "url": "https://lossless.echomusic.fun/Music/black-kouki-11._on.flac"
+    },
+    {
+      "song": "Dionysus",
+      "artist": "BTS",
+      "url": "https://lossless.echomusic.fun/Music/black-kouki-07._dionysus.flac"
+    },
+    {
+      "song": "FAKE LOVE",
+      "artist": "BTS",
+      "url": "https://lossless.echomusic.fun/Music/black-kouki-09._fake_love.flac"
+    },
+    {
+      "song": "Heathens",
+      "artist": "twenty one pilots",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-twenty_one_pilots_-_heathens.flac"
+    },
+    {
+      "song": "Skyfall",
+      "artist": "Adele",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-adele_-_skyfall.flac"
+    },
+    {
+      "song": "Daylight",
+      "artist": "David Kushner",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-david_kushner_-_daylight.flac"
+    },
+    {
+      "song": "Runaway",
+      "artist": "AURORA",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-aurora_-_runaway.flac"
+
     },
     {
       "song": "Cupid",
