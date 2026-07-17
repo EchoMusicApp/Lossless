@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "Skyfall",
+      "artist": "Adele",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-adele_-_skyfall.flac"
+    },
+    {
       "song": "Daylight",
       "artist": "David Kushner",
       "url": "https://lossless.echomusic.fun/Music/shivanium-git-david_kushner_-_daylight.flac"
