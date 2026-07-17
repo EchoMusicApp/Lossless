@@ -1,6 +1,31 @@
 {
   "items": [
     {
+      "song": "Murder Song (5, 4, 3, 2, 1)",
+      "artist": "AURORA",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-09_murder_song_5_4_3_2_1.flac"
+    },
+    {
+      "song": "Running With The Wolves",
+      "artist": "AURORA",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-03_running_with_the_wolves.flac"
+    },
+    {
+      "song": "Mini World",
+      "artist": "Indila",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-indila_-_mini_world.flac"
+    },
+    {
+      "song": "Thrusting (feat. Swae Lee & Future)",
+      "artist": "Internet Money",
+      "url": "https://lossless.echomusic.fun/Music/kenpachigrande-thrusting__feat._swae_lee___future__-_internet_money__b4_the_storm__expanded_edition_.flac"
+    },
+    {
+      "song": "Habibi",
+      "artist": "Ricky Rich & ARAM Mafia",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-ricky_rich__aram_mafia_-_habibi.flac"
+    },
+    {
       "song": "Unkiss Me",
       "artist": "Maroon 5",
       "url": "https://lossless.echomusic.fun/Music/shivanium-git-04_-_unkiss_me.flac"
