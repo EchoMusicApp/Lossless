@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "Hymn For The Weekend",
+      "artist": "Coldplay",
+      "url": "https://lossless.echomusic.fun/Music/shivanium-git-coldplay_-_hymn_for_the_weekend.flac"
+    },
+    {
       "song": "Skyfall",
       "artist": "Adele",
       "url": "https://lossless.echomusic.fun/Music/shivanium-git-adele_-_skyfall.flac"
