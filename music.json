@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "A Horse with No Name",
+      "artist": "America",
+      "url": "https://lossless.echomusic.fun/Music/cmf2977-commits-america_-_a_horse_with_no_name.flac"
+    },
+    {
       "song": "Miracles (Someone Special)",
       "artist": "Coldplay & Big Sean",
       "url": "https://lossless.echomusic.fun/Music/tk2105-dot-miracles__someone_special__-_coldplay___big_sean.flac"
