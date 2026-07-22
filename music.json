@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "song": "Ishq Bulaava",
+      "artist": "Vishal & Shekhar",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/macadityadav9532-debug-Vishal___Shekhar_-_Ishq_Bulaava.flac"
+    },
+    {
       "song": "NIGHT RIDER",
       "artist": "Joji",
       "url": "https://lossless.echomusic.fun/Music/satya-say-joji_-_night_rider.flac"
