@@ -1,6 +1,346 @@
 {
   "items": [
     {
+      "song": "Aashiqana",
+      "artist": "Chaar Diwaari, Indian Ocean, & gini",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/rtxxxzz-1784876386025-Aashiqana_-_Chaar_Diwaari__Indian_Ocean__gini.flac"
+    },
+    {
+      "song": "Semi-Automatic",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876960639-06_Semi-Automatic.flac"
+    },
+    {
+      "song": "Jannatein Kahan",
+      "artist": "KK, Pritam and Mayur Puri",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-jannatein_kahan.flac"
+    },
+    {
+      "song": "Inside Out (con Charlee)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784877518957-The_Chainsmokers_-_Inside_Out__feat._Charlee_.flac"
+    },
+    {
+      "song": "Don't Cry",
+      "artist": "Guns N' Roses",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784877497823-08_-_Don_t_Cry__Original_.flac"
+    },
+    {
+      "song": "New York City",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784877874934-The_Chainsmokers_-_New_York_City.flac"
+    },
+    {
+      "song": "Car Radio",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876150126-05_Car_Radio.flac"
+    },
+    {
+      "song": "Naan Un",
+      "artist": "A.R. Rahman, Arijit Singh, Chinmayi, Madhan Karky",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/rabin-v-1784879965450-A.R._Rahman_-_Naan_Un.flac"
+    },
+    {
+      "song": "House of Gold",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876867392-04_House_of_Gold.flac"
+    },
+    {
+      "song": "Fake You Out",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784877110137-09_Fake_You_Out.flac"
+    },
+    {
+      "song": "IRIS OUT",
+      "artist": "Kenshi Yonezu",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/kianawhen93-del-1784877570797-IRIS_OUT_-_Kenshi_Yonezu.flac"
+    },
+    {
+      "song": "Naan Nee",
+      "artist": "Shakthishree , Dheekshitha",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/rabin-v-1784876994305-Shakthishree_-_Naan_Nee.flac"
+    },
+    {
+      "song": "Kanye (con SirenXX)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878468838-The_Chainsmokers_-_Kanye.flac"
+    },
+    {
+      "song": "Closer",
+      "artist": "The Chainsmokers & Halsey",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-closer.flac"
+    },
+    {
+      "song": "My Type (con Emily Warren)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784879939271-The_Chainsmokers_-_My_Type__feat._Emily_Warren_.flac"
+    },
+    {
+      "song": "The Run and Go",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784877052417-08_The_Run_and_Go.flac"
+    },
+    {
+      "song": "Haseen",
+      "artist": "Talwiinder, NDS and Rippy Grewal",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-haseen.flac"
+    },
+    {
+      "song": "Make Me Feel",
+      "artist": "The Chainsmokers, Cheyenne Giles",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878792757-The_Chainsmokers_-_Make_Me_Feel.flac"
+    },
+    {
+      "song": "Setting Fires",
+      "artist": "The Chainsmokers, XYL\u00d8",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784877432045-The_Chainsmokers_-_Setting_Fires.flac"
+    },
+    {
+      "song": "Trees",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876344209-12_Trees.flac"
+    },
+    {
+      "song": "Love Is Kind",
+      "artist": "The Chainsmokers, Oaks",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784876787512-The_Chainsmokers_-_Love_Is_Kind.flac"
+    },
+    {
+      "song": "Chirapunji (From Saina Music Indie)",
+      "artist": "Nihal Sadiq, Hanan Shaah",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/skykid-mr-1784876244003-Chirapunji__From_Saina_Music_Indie__-_Nihal_Sadiq.flac"
+    },
+    {
+      "song": "Waterbed (con Waterbed)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878183643-The_Chainsmokers_-_Waterbed__feat._Waterbed_.flac"
+    },
+    {
+      "song": "Assai Illa",
+      "artist": "Harshavardhan Rameshwar, Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-assai_illa.flac"
+    },
+    {
+      "song": "Ennai Vittu",
+      "artist": "Ranjith & Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-ennai_vittu.flac"
+    },
+    {
+      "song": "Ennil Nee",
+      "artist": "Janani SV, Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-ennil_nee.flac"
+    },
+    {
+      "song": "Kanave Nee Naan",
+      "artist": "Sooraj Santhosh, Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-kanave_nee_naan.flac"
+    },
+    {
+      "song": "Kannum Kannum Kollaiyadithaal",
+      "artist": "Gouthami Ashok EFI & Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-kannum_kannum_kollaiyadithaal.flac"
+    },
+    {
+      "song": "Maagaa Maagaa",
+      "artist": "Harshavardhan Rameshwar, Kavya Ajit, Janani SV, and Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-maagaa_maagaa.flac"
+    },
+    {
+      "song": "Yelo Pullelo",
+      "artist": "Anirudh Ravichander & Masala Coffee",
+      "url": "https://lossless.echomusic.fun/Music/rupeshrn-yelo_pullelo.flac"
+    },
+    {
+      "song": "Guns for Hands",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784877556551-10_Guns_for_Hands.flac"
+    },
+    {
+      "song": "The One",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784879581291-The_Chainsmokers_-_The_One.flac"
+    },
+    {
+      "song": "Who Do You Love",
+      "artist": "The Chainsmokers, 5 Seconds of Summer",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784873767328-The_Chainsmokers_-_Who_Do_You_Love.flac"
+    },
+    {
+      "song": "Chittukku Chella Chittuku",
+      "artist": "K. J. Yesudas",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/rabin-v-1784876504166-K._J._Yesudas_-_Chittukku_Chella_Chittuku.flac"
+    },
+    {
+      "song": "Migraine",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876820085-03_Migraine.flac"
+    },
+    {
+      "song": "It Won't Kill Ya (con Louane)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784880018375-The_Chainsmokers_-_It_Won_t_Kill_Ya__feat._Louane_.flac"
+    },
+    {
+      "song": "Naani Koni",
+      "artist": "Harris Jayaraj",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/rabin-v-1784878868481-Naani_Koni_-_Vijay_Prakash__Karthik__Shreya_Ghoshal__Shekhinah_Shawn_Jazeel___Harris_Jayaraj.flac"
+    },
+    {
+      "song": "#SELFIE",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878573618-The_Chainsmokers_-__SELFIE.flac"
+    },
+    {
+      "song": "Don't Say (con Emily Warren)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784879844664-The_Chainsmokers_-_Don_t_Say__feat._Emily_Warren_.flac"
+    },
+    {
+      "song": "Car Radio",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876906812-05_Car_Radio.flac"
+    },
+    {
+      "song": "Until You Were Gone (con Emily Warren)",
+      "artist": "The Chainsmokers, Tritonal",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878091009-The_Chainsmokers_-_Until_You_Were_Gone__feat._Emily_Warren_.flac"
+    },
+    {
+      "song": "Echo",
+      "artist": "The Chainsmokers, Oaks",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878904945-The_Chainsmokers_-_Echo.flac"
+    },
+    {
+      "song": "Ode to Sleep",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876644275-01_Ode_to_Sleep.flac"
+    },
+    {
+      "song": "Good Intentions (con BullySongs)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878261140-The_Chainsmokers_-_Good_Intentions__feat._BullySongs_.flac"
+    },
+    {
+      "song": "Break Up Every Night",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784879653981-The_Chainsmokers_-_Break_Up_Every_Night.flac"
+    },
+    {
+      "song": "Bloodstream",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784879781638-The_Chainsmokers_-_Bloodstream.flac"
+    },
+    {
+      "song": "Iss Tarah",
+      "artist": "Chaar Diwaari, Sonu Nigam",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/rtxxxzz-1784876235687-Iss_Tarah_-_Chaar_Diwaari__Sonu_Nigam.flac"
+    },
+    {
+      "song": "Dil Kaa Jo Haal Hai",
+      "artist": "Abhijeet Bhattacharya, Shreya Ghoshal, Lalit Pandit and Rajeev Barnwal",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-dil_kaa_jo_haal_hai.flac"
+    },
+    {
+      "song": "Roses (con ROZES)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784877801102-The_Chainsmokers_-_Roses__feat._ROZES_.flac"
+    },
+    {
+      "song": "Let You Go (Radio Edit) (con Great Good Fine OK)",
+      "artist": "The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878397710-The_Chainsmokers_-_Let_You_Go__Radio_Edit_.flac"
+    },
+    {
+      "song": "Ariyathe Ariyathe (Duet)",
+      "artist": "K. S. Chithra, P. Jayachandran",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/skykid-mr-1784876354803-Ariyathe_Ariyathe__From_Ravanaprabhu____Duet__-_P._Jayachandran.flac"
+    },
+    {
+      "song": "West Coast",
+      "artist": "OneRepublic",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/iplonhasan70-maker-1784878801642-00_-_OneRepublic_-_West_Coast.flac"
+    },
+    {
+      "song": "Husn",
+      "artist": "Anuv Jain",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-husn.flac"
+    },
+    {
+      "song": "Five Past Three",
+      "artist": "The Chainsmokers, Oaks",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784876599331-The_Chainsmokers_-_Five_Past_Three.flac"
+    },
+    {
+      "song": "Guns for Hands",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784875697777-01_Guns_For_Hands.flac"
+    },
+    {
+      "song": "Screen",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784877008014-07_Screen.flac"
+    },
+    {
+      "song": "Ode to Sleep",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784875781222-03_Ode_To_Sleep.flac"
+    },
+    {
+      "song": "Sahiba",
+      "artist": "Jasleen Royal, Stebin Ben, Vijay Deverakonda, Radhikka Madan, Priya Saraiya and Aditya Sharma",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-sahiba.flac"
+    },
+    {
+      "song": "O Bekhabar",
+      "artist": "Shreya Ghoshal, Pritam and Irshad Kamil",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-o_bekhabar.flac"
+    },
+    {
+      "song": "Holding on to You",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784875831612-02_Holding_On_To_You.flac"
+    },
+    {
+      "song": "Five Past Three",
+      "artist": "The Chainsmokers, Oaks",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784874003564-The_Chainsmokers_-_Five_Past_Three.flac"
+    },
+    {
+      "song": "Wild",
+      "artist": "The Chainsmokers, Oaks",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784876877074-The_Chainsmokers_-_Wild.flac"
+    },
+    {
+      "song": "Stereo Hearts",
+      "artist": "Gym Class Heroes & Adam Levine",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-stereo_hearts.flac"
+    },
+    {
+      "song": "Split (Only U)",
+      "artist": "Ti\u00ebsto, The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784878692297-Ti_sto_-_Split__Only_U_.flac"
+    },
+    {
+      "song": "Suniyan Suniyan",
+      "artist": "Juss & MixSingh",
+      "url": "https://lossless.echomusic.fun/Music/hakishi-suniyan_suniyan.flac"
+    },
+    {
+      "song": "Loretta",
+      "artist": "Ginger Root",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/pinuaple-1784876877114-00_-_Ginger_Root_-_Loretta.flac"
+    },
+    {
+      "song": "Wish on an Eyelash, Pt. 2",
+      "artist": "Mallrat, The Chainsmokers",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784873881460-Mallrat_-_Wish_on_an_Eyelash__Pt._2.flac"
+    },
+    {
+      "song": "Holding on to You",
+      "artist": "twenty one pilots",
+      "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/keiiiiken-1784876773321-02_Holding_on_to_You.flac"
+    },
+    {
       "song": "White Wine & Adderall",
       "artist": "The Chainsmokers, Beau Nox",
       "url": "https://raw.githubusercontent.com/EchoMusicApp/Lossless-Database/main/Music/emanuelrd19-1784872697934-The_Chainsmokers_-_White_Wine___Adderall.flac"
