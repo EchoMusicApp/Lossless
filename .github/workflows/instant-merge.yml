@@ -22,7 +22,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
+          sparse-checkout: |
+            .github
+            submissions
+            music.json
 
       - name: Validate and Merge PR
         env:
